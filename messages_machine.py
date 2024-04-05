@@ -1,4 +1,4 @@
-money_reminder_message = '''Please pay your drink, you can pay with coins of:
+money_reminder_message = '''Please add coins, you can pay with coins of:
     quarter: $0.25,
     dimes: $0.10,
     nickles: $0.05,

@@ -3,11 +3,11 @@ from CoffeeMachine import *
 coffee_machine = CoffeeMachine(True, 100, 50, 76, 2.5)
 
 class TestCoffeeMachine:
-    """def test_get_quantity_items(self):
-        assert coffee_machine.getOrder() == list_drinks
+    def test_get_quantity_items(self):
+        assert coffee_machine.getOrder() == f" Water: {self.water}ml \n Milk: {self.milk}ml \n Coffee: {self.coffee}g \n Money: ${self.money}"
 
     def test_turn_machine_off(self):
-        coffee_machine.getOrder()
+        coffee_machine.setMachineOff()
         assert coffee_machine.machine_on == False
     
     def test_milk_empty(self):
@@ -31,7 +31,7 @@ class TestCoffeeMachine:
 
     def test_check_resources_available(self):
         coffee_machine_6 = CoffeeMachine(True, 100, 50, 0, 2.5)
-        coffee_machine_6.getOrder()"""
+        coffee_machine_6.getOrder()
     
     def test_get_value_money(self):
         coffee_machine.getOrder()

@@ -1,9 +1,3 @@
-list_drinks = {
-    "Water": "100ml",
-    "Milk": "50ml",
-    "Coffee": "76g",
-    "Money": "$2.5"
-},
 list_recipes = {
     "cappuccino": {
         "milk": 2,
@@ -15,12 +9,12 @@ list_recipes = {
         "milk": 5,
         "water": 5,
         "coffee": 0,
-        "money": 2.0
+        "money": 2.00
     },
     "espresso": {
         "milk": 1,
-        "water": 0,
+        "water": 10,
         "coffee": 4,
-        "money": 1.0
+        "money": 1.00
     }
 }

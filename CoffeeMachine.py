@@ -11,8 +11,7 @@ class CoffeeMachine:
         self.money = mon
 
     def getReport(self):
-        print(list_drinks)
-        #return list_drinks
+        print(f" Water: {self.water}ml \n Milk: {self.milk}ml \n Coffee: {self.coffee}g \n Money: ${self.money}")
 
     def setMachineOff(self):
         self.machine_on = False
@@ -36,27 +35,24 @@ class CoffeeMachine:
                 if key != 'money':
                     setattr(self, key, resource_item_quantity - value)
     
-    def decreaseMoney(self, price_order):
-        setattr(self, 'money', self.money - price_order)
-    
     def updateProfit(self, price_order):
-        setattr(self, 'money', self.money - price_order)
+        setattr(self, 'money', self.money + price_order)
+    
+    def refundUser(self, refund):
+        print (f"Here is ${refund} dollars in change.")
     
     def paymentProcess(self, order):
         price_order = list_recipes[order]['money']
-        coins_left = round(self.money - price_order,2)
-        print(coins_left)
-        while coins_left < 0:
-            #TODO change my name
-            coins = input(f"{money_reminder_message}, current coins: {coins_left}, drink price: {price_order}     ")
+        coins_inserted = 0
+        while coins_inserted < price_order:
+            coins = input(f"{money_reminder_message}, current coins: {format(coins_inserted, '.2f')}, drink price: {price_order}     ")
 
             if coins in coins_available:
-                coins_left =  round(coins_left + float(coins), 2)
-
-        self.decreaseMoney(price_order) #todo verifier montant retiré à la fin avec ajout
+                coins_inserted =  round(coins_inserted + float(coins), 2)
+        refund = format(coins_inserted - price_order, '.2f')
         self.updateProfit(price_order)
-        print(f"... here is your {order}...")
-            #return money_reminder_message
+        self.refundUser(refund)
+        print(f"... Here is your {order}. Enjoy!")
 
     def getOrder(self):  
         while self.machine_on == True:

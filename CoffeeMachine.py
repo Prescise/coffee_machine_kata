@@ -5,8 +5,8 @@ from messages_machine import *
 class CoffeeMachine:
     def  __init__(self, mach_on, mil, wat, cof, mon):
         self.machine_on = mach_on
-        self.milk = mil
         self.water = wat
+        self.milk = mil
         self.coffee = cof
         self.money = mon
 
@@ -21,25 +21,25 @@ class CoffeeMachine:
     def isResourceAvailable(self, order):
         for key, value in list_recipes[order].items():
             resource_quantity = getattr(self, key)
-            if key != 'money':
-                if resource_quantity < value :
+            if key!= 'money':
+                if  value > resource_quantity or resource_quantity == 0:
                     print(f"Sorry there is not enough {key}")
                     return False
                 else:
                     return True
                 
     def decreaseResourceQuantity(self, order):
-        if self.isResourceAvailable(order):
-            for key, value in list_recipes[order].items():
-                resource_item_quantity = getattr(self, key)
-                if key != 'money':
-                    setattr(self, key, resource_item_quantity - value)
-    
+        for key, value in list_recipes[order].items():
+            item_quantity = getattr(self, key)
+            if key != 'money':
+                setattr(self, key, item_quantity - value)
+
     def updateProfit(self, price_order):
         setattr(self, 'money', self.money + price_order)
     
     def refundUser(self, refund):
-        print (f"Here is ${refund} dollars in change.")
+        if refund > 0:
+            print (f"...Here is ${refund} dollars in change.")
     
     def paymentProcess(self, order):
         price_order = list_recipes[order]['money']
@@ -49,7 +49,7 @@ class CoffeeMachine:
 
             if coins in coins_available:
                 coins_inserted =  round(coins_inserted + float(coins), 2)
-        refund = format(coins_inserted - price_order, '.2f')
+        refund = round(float(coins_inserted - price_order),2)
         self.updateProfit(price_order)
         self.refundUser(refund)
         print(f"... Here is your {order}. Enjoy!")
